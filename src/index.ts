@@ -10,8 +10,8 @@ import getGregorianDate from "./gregorianDate";
 const app = new Hono();
 
 const welcomeStrings = [
-  `Hello Hono from Bun ${process.versions.bun}!`,
-  "To learn more about Hono + Bun on Vercel, visit https://vercel.com/docs/frameworks/backend/hono",
+  `Moroccan Time API`,
+  `Made by Omniversify with Hono & Bun ${process.versions.bun}!`,
 ];
 
 const date = new Date();
