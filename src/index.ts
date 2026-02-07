@@ -35,8 +35,107 @@ app.get("/api", (c) => {
 });
 app.get("/api/", (c) => {
   return c.html(
-    `<h1>Moroccan Time API</h1><p>Current Time: ${moroccoDateTime}</p><h1>API Endpoints</h1><ul><li>/api/date/</li><li>/api/amazigh/</li><li>/api/gregorian/</li><li>/api/islamic/</li><li>/api/amazigh/:year/:month/:day/</li><li>/api/gregorian/:year/:month/:day/</li><li>/api/islamic/:year/:month/:day/</li></ul>`,
+    `<h1>Moroccan Time API</h1><p>Current Time: ${moroccoDateTime}</p><h1>API Endpoints</h1><ul><li>/api/list/</li><li>/api/date/</li><li>/api/amazigh/</li><li>/api/gregorian/</li><li>/api/islamic/</li><li>/api/amazigh/:year/:month/:day/</li><li>/api/gregorian/:year/:month/:day/</li><li>/api/islamic/:year/:month/:day/</li></ul>`,
   );
+});
+app.get("/api/list", (c) => {
+  return c.redirect("/api/list/");
+});
+app.get("/api/list/", (c) => {
+  return c.json({
+    name: "Moroccan Time API",
+    version: "1.0.0",
+    description: "API for converting dates between Gregorian, Islamic (Hijri), and Amazigh calendars",
+    endpoints: {
+      base: {
+        "/api/": {
+          method: "GET",
+          description: "HTML documentation with all endpoints"
+        },
+        "/api/list/": {
+          method: "GET",
+          description: "Returns this JSON list of all available APIs"
+        },
+        "/api/time/": {
+          method: "GET",
+          description: "Returns current time in Morocco (YYYY-MM-DD_HH:MM format)"
+        }
+      },
+      currentDate: {
+        "/api/date/": {
+          method: "GET",
+          description: "Returns all three calendar dates for today"
+        },
+        "/api/amazigh/": {
+          method: "GET",
+          description: "Returns today's date in Amazigh calendar"
+        },
+        "/api/gregorian/": {
+          method: "GET",
+          description: "Returns today's date in Gregorian calendar"
+        },
+        "/api/islamic/": {
+          method: "GET",
+          description: "Returns today's date in Islamic/Hijri calendar"
+        }
+      },
+      dateConversion: {
+        "/api/amazigh/{year}/{month}/{day}/": {
+          method: "GET",
+          description: "Convert Gregorian date to Amazigh calendar",
+          parameters: {
+            year: "4-digit year (e.g., 2024)",
+            month: "Month number 1-12 (e.g., 1 for January)",
+            day: "Day of month 1-31 (e.g., 15)"
+          },
+          example: "/api/amazigh/2024/1/15/"
+        },
+        "/api/gregorian/{year}/{month}/{day}/": {
+          method: "GET",
+          description: "Validate and format Gregorian date",
+          parameters: {
+            year: "4-digit year (e.g., 2024)",
+            month: "Month number 1-12 (e.g., 1 for January)",
+            day: "Day of month 1-31 (e.g., 15)"
+          },
+          example: "/api/gregorian/2024/6/1/"
+        },
+        "/api/islamic/{year}/{month}/{day}/": {
+          method: "GET",
+          description: "Convert Gregorian date to Islamic/Hijri calendar",
+          parameters: {
+            year: "4-digit year (e.g., 2024)",
+            month: "Month number 1-12 (e.g., 1 for January)",
+            day: "Day of month 1-31 (e.g., 15)"
+          },
+          example: "/api/islamic/2024/1/15/"
+        }
+      },
+      monthNames: {
+        "/api/amazighMonths/": {
+          method: "GET",
+          description: "Returns list of all Amazigh months with Tifinagh script"
+        },
+        "/api/gregorianMonths/": {
+          method: "GET",
+          description: "Returns list of all Gregorian months with Tifinagh script"
+        },
+        "/api/islamicMonths/": {
+          method: "GET",
+          description: "Returns list of all Islamic months with Tifinagh script"
+        }
+      }
+    },
+    calendars: {
+      gregorian: "Standard civil calendar used worldwide",
+      islamic: "Lunar calendar used in Islamic cultures (data from Aladhan API)",
+      amazigh: "Traditional Berber calendar derived from Julian calendar"
+    },
+    links: {
+      github: "https://github.com/phaylali/moroccan-time-api",
+      documentation: "/api/"
+    }
+  });
 });
 app.get("/api/date/", (c) => {
   return c.redirect("/api/date");

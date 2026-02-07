@@ -32,6 +32,49 @@ A powerful API that provides accurate date conversions between **Gregorian**, **
 |----------|--------|-------------|
 | `/` | GET | Welcome message |
 | `/api/` | GET | HTML documentation with all endpoints |
+| `/api/list/` | GET | JSON list of all available APIs |
+
+---
+
+### 📋 API Discovery
+
+Get a complete JSON list of all available endpoints:
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/list/` | GET | Returns complete API documentation in JSON format |
+
+**Example Response:**
+```json
+{
+  "name": "Moroccan Time API",
+  "version": "1.0.0",
+  "description": "API for converting dates...",
+  "endpoints": {
+    "base": {
+      "/api/": {"method": "GET", "description": "HTML documentation"},
+      "/api/list/": {"method": "GET", "description": "JSON API list"},
+      "/api/time/": {"method": "GET", "description": "Current Morocco time"}
+    },
+    "currentDate": {
+      "/api/date/": {"method": "GET", "description": "All three calendars today"},
+      "/api/amazigh/": {"method": "GET", "description": "Today's Amazigh date"},
+      "/api/gregorian/": {"method": "GET", "description": "Today's Gregorian date"},
+      "/api/islamic/": {"method": "GET", "description": "Today's Islamic date"}
+    },
+    "dateConversion": {
+      "/api/amazigh/{year}/{month}/{day}/": {...},
+      "/api/gregorian/{year}/{month}/{day}/": {...},
+      "/api/islamic/{year}/{month}/{day}/": {...}
+    },
+    "monthNames": {
+      "/api/amazighMonths/": {...},
+      "/api/gregorianMonths/": {...},
+      "/api/islamicMonths/": {...}
+    }
+  }
+}
+```
 
 ---
 
