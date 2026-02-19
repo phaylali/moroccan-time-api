@@ -28,11 +28,11 @@ A powerful API that provides accurate date conversions between **Gregorian**, **
 
 ### 🏠 Base Endpoints
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Welcome message |
-| `/api/` | GET | HTML documentation with all endpoints |
-| `/api/list/` | GET | JSON list of all available APIs |
+| Endpoint     | Method | Description                           |
+| ------------ | ------ | ------------------------------------- |
+| `/`          | GET    | Welcome message                       |
+| `/api/`      | GET    | HTML documentation with all endpoints |
+| `/api/list/` | GET    | JSON list of all available APIs       |
 
 ---
 
@@ -40,11 +40,12 @@ A powerful API that provides accurate date conversions between **Gregorian**, **
 
 Get a complete JSON list of all available endpoints:
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/list/` | GET | Returns complete API documentation in JSON format |
+| Endpoint     | Method | Description                                       |
+| ------------ | ------ | ------------------------------------------------- |
+| `/api/list/` | GET    | Returns complete API documentation in JSON format |
 
 **Example Response:**
+
 ```json
 {
   "name": "Moroccan Time API",
@@ -80,11 +81,12 @@ Get a complete JSON list of all available endpoints:
 
 ### 📅 All Calendars Combined
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/date/` | GET | Returns all three calendar dates for today |
+| Endpoint     | Method | Description                                |
+| ------------ | ------ | ------------------------------------------ |
+| `/api/date/` | GET    | Returns all three calendar dates for today |
 
 **Example Response:**
+
 ```json
 {
   "amazigh": {
@@ -126,12 +128,12 @@ Get a complete JSON list of all available endpoints:
 
 Get today's date in each calendar system:
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/amazigh/` | GET | Returns today's date in Amazigh calendar |
-| `/api/gregorian/` | GET | Returns today's date in Gregorian calendar |
-| `/api/islamic/` | GET | Returns today's date in Islamic/Hijri calendar |
-| `/api/time/` | GET | Returns current time in Morocco (YYYY-MM-DD_HH:MM format) |
+| Endpoint          | Method | Description                                               |
+| ----------------- | ------ | --------------------------------------------------------- |
+| `/api/amazigh/`   | GET    | Returns today's date in Amazigh calendar                  |
+| `/api/gregorian/` | GET    | Returns today's date in Gregorian calendar                |
+| `/api/islamic/`   | GET    | Returns today's date in Islamic/Hijri calendar            |
+| `/api/time/`      | GET    | Returns current time in Morocco (YYYY-MM-DD_HH:MM format) |
 
 **Example Responses:**
 
@@ -155,13 +157,14 @@ GET /api/time/
 
 Convert any Gregorian date to Amazigh or Islamic calendar:
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/amazigh/{year}/{month}/{day}/` | GET | Convert Gregorian date to Amazigh |
-| `/api/gregorian/{year}/{month}/{day}/` | GET | Validate/formatted Gregorian date |
-| `/api/islamic/{year}/{month}/{day}/` | GET | Convert Gregorian date to Islamic |
+| Endpoint                               | Method | Description                       |
+| -------------------------------------- | ------ | --------------------------------- |
+| `/api/amazigh/{year}/{month}/{day}/`   | GET    | Convert Gregorian date to Amazigh |
+| `/api/gregorian/{year}/{month}/{day}/` | GET    | Validate/formatted Gregorian date |
+| `/api/islamic/{year}/{month}/{day}/`   | GET    | Convert Gregorian date to Islamic |
 
 **URL Parameters:**
+
 - `{year}` - 4-digit year (e.g., 2024)
 - `{month}` - Month number 1-12 (e.g., 1 for January)
 - `{day}` - Day of month 1-31 (e.g., 15)
@@ -170,7 +173,7 @@ Convert any Gregorian date to Amazigh or Islamic calendar:
 
 ```
 GET /api/amazigh/2024/1/15/
-→ {"year":2974,"month":{"order":1,"latin":"Yennayer","tifinagh":"ⵢⵏⵏⴰⵢⵔ","arabic":"يناير"},"day":2}
+→ {"year":2974,"month":{"order":1,"latin":"Innayr","tifinagh":"ⵢⵏⵏⴰⵢⵔ","arabic":"إناير"},"day":2}
 
 GET /api/gregorian/2024/6/1/
 → {"year":2024,"month":{"order":6,"latin":"June","tifinagh":"ⵊⵓⵏ","arabic":"يونيو"},"day":1}
@@ -185,26 +188,27 @@ GET /api/islamic/2024/1/15/
 
 Get the list of month names for each calendar:
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/api/amazighMonths/` | GET | List all Amazigh months with Tifinagh script |
-| `/api/gregorianMonths/` | GET | List all Gregorian months with Tifinagh script |
-| `/api/islamicMonths/` | GET | List all Islamic months with Tifinagh script |
+| Endpoint                | Method | Description                                    |
+| ----------------------- | ------ | ---------------------------------------------- |
+| `/api/amazighMonths/`   | GET    | List all Amazigh months with Tifinagh script   |
+| `/api/gregorianMonths/` | GET    | List all Gregorian months with Tifinagh script |
+| `/api/islamicMonths/`   | GET    | List all Islamic months with Tifinagh script   |
 
 **Example Response:**
+
 ```json
 [
   {
     "order": 1,
-    "latin": "Yennayer",
+    "latin": "Innayr",
     "tifinagh": "ⵢⵏⵏⴰⵢⵔ",
-    "arabic": "يناير"
+    "arabic": "إناير"
   },
   {
     "order": 2,
-    "latin": "Furar",
-    "tifinagh": "ⴼⵓⵔⴰⵔ",
-    "arabic": "فورار"
+    "latin": "Bṛayṛ",
+    "tifinagh": "ⴱⵕⴰⵢⵕ",
+    "arabic": "براير"
   }
   // ... more months
 ]
@@ -215,13 +219,17 @@ Get the list of month names for each calendar:
 ## 🗓️ Calendar Information
 
 ### 📅 Gregorian Calendar
+
 The standard civil calendar used worldwide.
 
 ### 🕌 Islamic (Hijri) Calendar
+
 Lunar calendar used in Islamic cultures. Dates are fetched from the [Aladhan API](https://aladhan.com/).
 
 ### ⵣ Amazigh (Berber) Calendar
+
 The traditional Berber calendar, derived from the Julian calendar:
+
 - **Year Offset**: Amazigh year = Julian year + 950 CE
 - **New Year**: Yennayer 1 = January 14 Gregorian
 - **13-day drift**: Due to the difference between Julian and Gregorian calendars
@@ -279,12 +287,12 @@ vc deploy
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| 🟦 **TypeScript** | Type-safe JavaScript |
-| ⚡ **Hono** | Lightweight web framework |
-| 🟣 **Bun** | Fast JavaScript runtime |
-| 🌐 **Vercel** | Edge deployment platform |
+| Technology         | Purpose                   |
+| ------------------ | ------------------------- |
+| 🟦 **TypeScript**  | Type-safe JavaScript      |
+| ⚡ **Hono**        | Lightweight web framework |
+| 🟣 **Bun**         | Fast JavaScript runtime   |
+| 🌐 **Vercel**      | Edge deployment platform  |
 | 🕌 **Aladhan API** | Islamic date calculations |
 
 ---
@@ -313,6 +321,7 @@ moroccan-time-api/
 No environment variables required! The API works out of the box.
 
 For production deployment, you may want to set:
+
 - `TZ` = `Africa/Casablanca` (for consistent timezone handling)
 
 ---
@@ -342,12 +351,12 @@ You can use the API directly in your browser or any HTTP client:
 
 ```javascript
 // Fetch all calendars
-const response = await fetch('https://your-api.com/api/date/');
+const response = await fetch("https://your-api.com/api/date/");
 const data = await response.json();
 console.log(data);
 
 // Fetch specific date conversion
-const response = await fetch('https://your-api.com/api/amazigh/2024/1/15/');
+const response = await fetch("https://your-api.com/api/amazigh/2024/1/15/");
 const amazighDate = await response.json();
 console.log(amazighDate);
 ```
@@ -368,7 +377,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 ---
 
